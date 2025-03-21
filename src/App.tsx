@@ -11,7 +11,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [newTask, setNewTask] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [showShortcutHint, setShowShortcutHint] = useState(false);
+  // const [showShortcutHint, setShowShortcutHint] = useState(false);
 
   useEffect(() => {
     // Load tasks and links from storage
@@ -30,17 +30,17 @@ function App() {
     }
 
     // Setup keyboard shortcut
-    const handleShortcut = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 't') {
-        const task = prompt('Quick add task:');
-        if (task) {
-          addTask(task);
-        }
-      }
-    };
+    // const handleShortcut = (e: KeyboardEvent) => {
+    //   if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 't') {
+    //     const task = prompt('Quick add task:');
+    //     if (task) {
+    //       addTask(task);
+    //     }
+    //   }
+    // };
 
-    window.addEventListener('keydown', handleShortcut);
-    return () => window.removeEventListener('keydown', handleShortcut);
+    // window.addEventListener('keydown', handleShortcut);
+    // return () => window.removeEventListener('keydown', handleShortcut);
   }, []);
 
   useEffect(() => {
@@ -102,13 +102,13 @@ function App() {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">MinuteMind</h1>
         <div className="flex items-center gap-2">
-          <button
+          {/* <button
             onClick={() => setShowShortcutHint(!showShortcutHint)}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
             title="Keyboard Shortcuts"
           >
             <Keyboard className="w-5 h-5" />
-          </button>
+          </button> */}
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -118,13 +118,13 @@ function App() {
         </div>
       </div>
 
-      {showShortcutHint && (
+      {/* {showShortcutHint && (
         <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
           <p className="text-sm">
             Quick Add Task: <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">Ctrl</kbd> + <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">Shift</kbd> + <kbd className="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">T</kbd>
           </p>
         </div>
-      )}
+      )} */}
 
       <QuickLinks
         links={links}

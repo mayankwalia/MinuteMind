@@ -28,6 +28,17 @@ const COLORS = {
   'rose': 'bg-rose-500'
 };
 
+const COLOR_MAP = {
+  'slate': 'border-slate-500',
+  'red': 'border-red-500',
+  'amber': 'border-amber-500',
+  'emerald': 'border-emerald-500',
+  'cyan': 'border-cyan-500',
+  'violet': 'border-violet-500',
+  'fuchsia': 'border-fuchsia-500',
+  'rose': 'border-rose-500'
+};
+
 const PRIORITY_ICONS = {
   high: <AlertCircle className="w-4 h-4 text-red-500" />,
   medium: <Clock className="w-4 h-4 text-yellow-500" />,
@@ -159,7 +170,9 @@ export function TaskList({ tasks, onTaskUpdate, onTaskDelete, onTaskReorder, sea
             ref={provided.innerRef}
             className="space-y-2"
           >
-            {sortedTasks.map((task, index) => (
+            {sortedTasks.map((task, index) => {
+              const borderColorClass = task.color ? `border-l-4 ${COLOR_MAP[task.color.split('-')[0]]}` : '';
+              return (
               <Draggable key={task.id} draggableId={task.id} index={index}>
                 {(provided) => (
                   <div
@@ -169,7 +182,7 @@ export function TaskList({ tasks, onTaskUpdate, onTaskDelete, onTaskReorder, sea
                     className={`
                       flex flex-col gap-2 p-3 rounded-lg shadow-sm
                       ${task.completed ? 'bg-gray-100 dark:bg-gray-800' : 'bg-white dark:bg-gray-700'}
-                      ${task.color ? `border-l-4 border-${task.color.split('-')[0]}-500` : ''}
+                      ${borderColorClass}
                       transition-all duration-200 hover:shadow-md
                     `}
                   >
@@ -343,7 +356,7 @@ export function TaskList({ tasks, onTaskUpdate, onTaskDelete, onTaskReorder, sea
                   </div>
                 )}
               </Draggable>
-            ))}
+              )})}
             {provided.placeholder}
           </div>
         )}
